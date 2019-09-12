@@ -1,0 +1,28 @@
+﻿Project organization for larger flask projects.
+
+
+├───app.py # main app.py file to be called to start server for web app
+├───requirements.txt # File of pip install statements for your app
+├───migrations # folder created for migrations by calling
+├───src # main project folder, sub-components will be in separate folders)
+│   │   __init__.py
+│   │
+│   ├───models
+│   │   │   object_1.py
+│   │   │   ...
+│   │
+│   ├───components
+│   |   ├───object_1
+|   │   │   │   forms.py
+|   │   │   │   views.py
+│   │   │
+│   ├───templates
+│   │   └───object_1
+│   │       |   add.html
+│   │       |   list.html
+│   │       |   delete.html
+│   │
+│   ├───static # Where you store your CSS, JS, Images, Fonts, etc...
+│   ├───templates
+│       |   base.html
+│       |   home.html
