@@ -1,17 +1,11 @@
 {% extends "base.html" %} {% block content %}
 <div class="jumbotron">
-  <h1>Hello!!! Here is a list of all available events.</h1>
+  <h1>Hello!!! This a {{ event.name }} event</h1>
   <div class="row">
-    {% for event in events %}
     <div class="col">
       <ul style="list-style: none">
         <li>
-          <img src="{{ event.image_url }}" alt="" width="250" height="200" />
-        </li>
-        <li>
-          <a href="{{ url_for('event.ev_detail', evt_id=event.id) }}">{{
-            event.name
-          }}</a>
+          <img src="{{ event.image_url }}" alt="" width="800" height="500" />
         </li>
         <li>{{ event.description }}</li>
         <li>{{ event.price }}</li>
@@ -19,9 +13,8 @@
         <li>{{ event.time }}</li>
         <li>{{ event.duration_end }}</li>
       </ul>
+      <a class="btn btn-info" href="/">buy ticket</a>
     </div>
-
-    {% endfor %}
   </div>
 </div>
 {% endblock %}

@@ -34,6 +34,13 @@ def list():
     return render_template('events/list.html', events=events)
 
 
+@events_blueprint.route('/list/<int:evt_id>')
+def ev_detail(evt_id):
+    # Grab a list of events from database.
+    event = Events.query.get_or_404(evt_id)
+    return render_template('events/event_detail.html', event=event)
+
+
 @events_blueprint.route('/delete', methods=['GET', 'POST'])
 def delete():
     form = DelForm()

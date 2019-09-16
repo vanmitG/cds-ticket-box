@@ -3,7 +3,6 @@ from wtforms import StringField, IntegerField, SubmitField, DateTimeField, Valid
 
 
 class AddForm(FlaskForm):
-
     name = StringField('Name of Event:')
     description = StringField('Description:')
     image_url = StringField('Image URL:')
@@ -14,6 +13,5 @@ class AddForm(FlaskForm):
 
 
 class DelForm(FlaskForm):
-
     id = IntegerField('Id Number of Event to Remove:')
     submit = SubmitField('Remove Event')
