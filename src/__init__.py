@@ -1,9 +1,8 @@
 import os
-from flask import Flask
+from flask import Flask, redirect, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin
-from flask_admin.contrib.sqla import ModelView
-from flask_login import LoginManager
+from flask_login import LoginManager, current_user
 from flask_migrate import Migrate
 
 app = Flask(__name__)
@@ -21,6 +20,7 @@ app.config['SECRET_KEY'] = os.environ['MY_SECRET_KEY']
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:%(pw)s@%(host)s:\
 %(port)s/%(db)s' % POSTGRES
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 
 db = SQLAlchemy(app)
 Migrate(app, db)
@@ -30,10 +30,12 @@ login_mgr = LoginManager(app)
 login_mgr.login_view = 'users.login'
 login_mgr.init_app(app)
 
+
+from src.models.admin import AuthModelView  # noqa
 from src.models.users import Users  # noqa
 from src.models.event import Events  # noqa
-admin_mgr.add_view(ModelView(Users, db.session))
-admin_mgr.add_view(ModelView(Events, db.session))
+admin_mgr.add_view(AuthModelView(Users, db.session))
+admin_mgr.add_view(AuthModelView(Events, db.session))
 
 
 @login_mgr.user_loader

@@ -19,10 +19,10 @@ def add():
         address = form.address.data
         time = form.time.data
         # Add new Event to database
-        new_pup = Event(name, description, image_url, price, address, time)
+        new_pup = Events(name, description, image_url, price, address, time)
         db.session.add(new_pup)
         db.session.commit()
-        return redirect(url_for('events.list'))
+        return redirect(url_for('event.list'))
 
     return render_template('events/add.html', form=form)
 
@@ -42,5 +42,5 @@ def delete():
         pup = Event.query.get(id)
         db.session.delete(pup)
         db.session.commit()
-        return redirect(url_for('events.list'))
+        return redirect(url_for('event.list'))
     return render_template('events/delete.html', form=form)
