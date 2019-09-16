@@ -12,8 +12,8 @@ This is an application meant to replicate www.ticketbox.vn. It is currently roug
 
 ## To Be Implemented
 
-- [ ] Event Detail Page
-- [ ] Create User-Facing Add Event Page
+- [x] Event Detail Page
+- [x] Create User-Facing Add Event Page
 - [ ] User can buy tickets from Event Detail Page
 
 ## Installation Instructions

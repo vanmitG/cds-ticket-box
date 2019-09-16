@@ -29,7 +29,7 @@ Migrate(app, db)
 admin_mgr = Admin(app, template_mode='bootstrap3')
 
 login_mgr = LoginManager(app)
-login_mgr.login_view = 'users.login'
+login_mgr.login_view = 'user.login'
 login_mgr.init_app(app)
 
 

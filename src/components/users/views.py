@@ -65,6 +65,7 @@ def list():
 
 
 @users_blueprint.route('/delete', methods=['GET', 'POST'])
+@login_required
 def delete():
     form = DelForm()
     if form.validate_on_submit():

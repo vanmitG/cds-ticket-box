@@ -1,4 +1,5 @@
 from flask import Blueprint, render_template, redirect, url_for
+from flask_login import login_required, current_user
 from src import db
 from src.components.c_events.forms import AddForm, DelForm
 from src.models.event import Events
@@ -9,6 +10,7 @@ events_blueprint = Blueprint('event',
 
 
 @events_blueprint.route('/add', methods=['GET', 'POST'])
+@login_required
 def add():
     form = AddForm()
     if form.validate_on_submit():
@@ -18,8 +20,10 @@ def add():
         price = form.price.data
         address = form.address.data
         time = form.time.data
+        organizer_id = current_user.id
         # Add new Event to database
-        new_pup = Events(name, description, image_url, price, address, time)
+        new_pup = Events(name=name, description=description, image_url=image_url,
+                         price=price, address=address, time=time, organizer_id=organizer_id)
         db.session.add(new_pup)
         db.session.commit()
         return redirect(url_for('event.list'))
@@ -42,6 +46,7 @@ def ev_detail(evt_id):
 
 
 @events_blueprint.route('/delete', methods=['GET', 'POST'])
+@login_required
 def delete():
     form = DelForm()
     if form.validate_on_submit():
