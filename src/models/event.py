@@ -20,7 +20,7 @@ class Events(db.Model):
     duration_end = db.Column(
         db.DateTime, nullable=False, default=datetime.utcnow)
     organizer_id = db.Column(
-        db.Integer, db.ForeignKey('users.id'), nullable=False, )
+        db.Integer, db.ForeignKey('users.id'), nullable=False)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
