@@ -39,7 +39,7 @@ def delete():
     form = DelForm()
     if form.validate_on_submit():
         id = form.id.data
-        pup = Event.query.get(id)
+        pup = Events.query.get(id)
         db.session.delete(pup)
         db.session.commit()
         return redirect(url_for('event.list'))
