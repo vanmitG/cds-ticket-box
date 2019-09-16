@@ -47,8 +47,9 @@ def load_user(id):
 
 # the line noqa is prevent from statement to be moved up
 from src.components.users.views import users_blueprint  # noqa
-
 from src.components.c_events.views import events_blueprint  # noqa
+from src.components.ticket_comp.views import tickets_blueprint  # noqa
 
 app.register_blueprint(events_blueprint, url_prefix='/events')
 app.register_blueprint(users_blueprint, url_prefix='/users')
+app.register_blueprint(tickets_blueprint, url_prefix='/tickets')

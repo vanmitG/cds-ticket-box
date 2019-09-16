@@ -14,7 +14,7 @@ This is an application meant to replicate www.ticketbox.vn. It is currently roug
 
 - [x] Event Detail Page
 - [x] Create User-Facing Add Event Page
-- [ ] User can buy tickets from Event Detail Page
+- [x] User can buy tickets from Event Detail Page
 
 ## Installation Instructions
 
@@ -22,7 +22,7 @@ Clone this repository and run `pip install -r requirements.txt`
 
 ## Database Schema
 
-[A quick look at the data base squema](https://www.lucidchart.com/documents/embeddedchart/84976959-8c38-4c2a-bc3a-9b3f8ccb3f76)
+[An intended database squema](https://www.lucidchart.com/documents/embeddedchart/84976959-8c38-4c2a-bc3a-9b3f8ccb3f76)
 
 ### web app
 

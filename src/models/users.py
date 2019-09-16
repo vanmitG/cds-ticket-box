@@ -21,7 +21,6 @@ class Users(UserMixin, db.Model):
         db.DateTime, nullable=False, default=datetime.utcnow)
     updated_date = db.Column(
         db.DateTime,  nullable=False, default=datetime.utcnow)
-    # likes = db.relationship('PostLikes',  backref='users', lazy='dynamic')
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)

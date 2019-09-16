@@ -21,6 +21,8 @@ class Events(db.Model):
         db.DateTime, nullable=False, default=datetime.utcnow)
     organizer_id = db.Column(
         db.Integer, db.ForeignKey('users.id'), nullable=False)
+    # tickets = db.relationship('Ticket', backref='events', lazy="dynamic")
+    # owner_id = db.relationship('User',backref='event', nullable=False)
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
