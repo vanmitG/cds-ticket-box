@@ -7,18 +7,20 @@ from flask_migrate import Migrate
 
 app = Flask(__name__)
 
-POSTGRES = {
-    'user': os.environ['PSQL_USER'],
-    'pw': os.environ['PSQL_PWD'],
-    'db': os.environ['PSQL_DB'],
-    'host': os.environ['PSQL_HOST'],
-    'port': os.environ['PSQL_PORT'],
-}
+# POSTGRES = {
+#     'user': os.environ['PSQL_USER'],
+#     'pw': os.environ['PSQL_PWD'],
+#     'db': os.environ['PSQL_DB'],
+#     'host': os.environ['PSQL_HOST'],
+#     'port': os.environ['PSQL_PORT'],
+# }
 
 # Often people will also separate these into a separate config.py file
 app.config['SECRET_KEY'] = os.environ['MY_SECRET_KEY']
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://%(user)s:%(pw)s@%(host)s:\
-%(port)s/%(db)s' % POSTGRES
+app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
+
+# 'postgresql://%(user)s:%(pw)s@%(host)s:\
+# %(port)s/%(db)s' % POSTGRES
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['FLASK_ADMIN_SWATCH'] = 'cerulean'
 
