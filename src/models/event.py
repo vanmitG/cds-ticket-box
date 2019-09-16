@@ -2,7 +2,7 @@ from src import db
 from datetime import datetime
 
 
-class Event(db.Model):
+class Events(db.Model):
 
     __tablename__ = 'events'
 
@@ -11,18 +11,19 @@ class Event(db.Model):
     # owner_id = db.relationship('User',backref='event', nullable=False)
     # owner_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     description = db.Column(db.Text, nullable=False)
-    image_url: db.Column(db.String(200), nullable=False)
-    price: db.Column(db.Integer, default=0)
-    address: db.Column(db.String(100), nullable=False)
-    time: db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    image_url = db.Column(db.String(200), nullable=False)
+    price = db.Column(db.Integer, default=0)
+    address = db.Column(db.String(100), nullable=False)
+    time = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    duration_start = db.Column(
+        db.DateTime, nullable=False, default=datetime.utcnow)
+    duration_end = db.Column(
+        db.DateTime, nullable=False, default=datetime.utcnow)
+    organizer_id = db.Column(
+        db.Integer, db.ForeignKey('users.id'), nullable=False, )
 
-    def __init__(self, name, description, image_url, price, address, time):
-        self.name = name
-        self.description = description
-        self.image_url = image_url
-        self.price = price
-        self.address = address
-        self.time = time
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
 
     def __repr__(self):
-        return f"{self.id} Event name is {self.name}."
+        return f"{self.id} event_name is {self.name}."

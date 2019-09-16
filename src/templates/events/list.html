@@ -1,10 +1,23 @@
 {% extends "base.html" %} {% block content %}
 <div class="jumbotron">
-  <h1>Here is a list of all available events.</h1>
-  <ul>
+  <h1>Hello!!! Here is a list of all available User.</h1>
+  <div class="row">
     {% for event in events %}
-    <li>{{ event }}</li>
+    <div class="col">
+      <ul style="list-style: none">
+        <li>
+          <img src="{{ event.image_url }}" alt="" width="250" height="200" />
+        </li>
+        <li>{{ event.name }}</li>
+        <li>{{ event.description }}</li>
+        <li>{{ event.price }}</li>
+        <li>{{ event.address }}</li>
+        <li>{{ event.time }}</li>
+        <li>{{ event.duration_end }}</li>
+      </ul>
+    </div>
+
     {% endfor %}
-  </ul>
+  </div>
 </div>
 {% endblock %}
