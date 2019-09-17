@@ -36,8 +36,10 @@ login_mgr.init_app(app)
 from src.models.admin import AuthModelView  # noqa
 from src.models.users import Users  # noqa
 from src.models.event import Events  # noqa
+from src.models.event import Tickets  # noqa
 admin_mgr.add_view(AuthModelView(Users, db.session))
 admin_mgr.add_view(AuthModelView(Events, db.session))
+admin_mgr.add_view(AuthModelView(Tickets, db.session))
 
 
 @login_mgr.user_loader

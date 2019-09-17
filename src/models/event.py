@@ -8,8 +8,6 @@ class Events(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-    # owner_id = db.relationship('User',backref='event', nullable=False)
-    # owner_id = db.Column(db.Integer,db.ForeignKey('user.id'))
     description = db.Column(db.Text, nullable=False)
     image_url = db.Column(db.String(200), nullable=False)
     price = db.Column(db.Integer, default=0)
@@ -21,11 +19,29 @@ class Events(db.Model):
         db.DateTime, nullable=False, default=datetime.utcnow)
     organizer_id = db.Column(
         db.Integer, db.ForeignKey('users.id'), nullable=False)
-    # tickets = db.relationship('Ticket', backref='events', lazy="dynamic")
-    # owner_id = db.relationship('User',backref='event', nullable=False)
+    tickets = db.relationship('Ticket', backref='events', lazy="dynamic")
 
     def __init__(self, **kwargs):
         super().__init__(**kwargs)
 
     def __repr__(self):
         return f"{self.id} event_name is {self.name}."
+
+
+class Tickets(db.Model):
+
+    __tablename__ = 'tickets'
+
+    id = db.Column(db.Integer, primary_key=True)
+    typeName = db.Column(db.String(40), nullable=False)
+    price = db.Column(db.Integer, default=0)
+    max_quantity = db.Column(db.Integer, default=10)
+    seat_id = db.Column(db.Integer, default=1)
+    event_id = db.Column(db.Integer, db.ForeignKey(
+        'events.id'), nullable=False)
+
+    def __init__(self, **kwargs):
+        super().__init__(**kwargs)
+
+    def __repr__(self):
+        return f"{self.id} ticket is of type{self.typeName} of {self.event_id}."
